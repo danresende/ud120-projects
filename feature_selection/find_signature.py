@@ -39,5 +39,22 @@ labels_train   = labels_train[:150]
 
 ### your code goes here
 
+from sklearn.tree import DecisionTreeClassifier
+
+clf = DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+
+predictions = clf.predict(features_test)
+
+from sklearn.metrics import accuracy_score
+
+print accuracy_score(predictions, labels_test)
+
+for i in range(len(clf.feature_importances_)):
+	if clf.feature_importances_[i] > 0.2:
+		print 'Possible outlier: %s, position #%i, importance %.4f \n' % (vectorizer.get_feature_names()[i], i, clf.feature_importances_[i])
+
+
+
 
 
